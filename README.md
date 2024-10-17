@@ -1,8 +1,8 @@
 # videodl
 
-<img src="https://img.shields.io/github/stars/titenq/videodl.svg" style="margin-right: 20px;">
-<img src="https://img.shields.io/github/forks/titenq/videodl.svg" style="margin-right: 20px;">
-<img src="https://img.shields.io/github/issues/titenq/videodl.svg">
+![](https://img.shields.io/github/stars/titenq/quizmania.svg)&nbsp;&nbsp;
+![](https://img.shields.io/github/forks/titenq/quizmania.svg)&nbsp;&nbsp;
+![](https://img.shields.io/github/issues/titenq/quizmania.svg) 
 
 ### Executa o download de vídeos:
 - YouTube - Vídeo

@@ -1,19 +1,73 @@
-Dependências e Instalação
-FFmpeg:
+# videodl
 
-Instalação: As instruções de instalação do FFmpeg variam de acordo com o sistema operacional. Aqui estão algumas opções comuns:
-Windows: https://www.wikihow.com/Install-FFmpeg-on-Windows
-macOS: Usar Homebrew com o comando brew install ffmpeg.
-Linux: Usar o gerenciador de pacotes da sua distribuição, por exemplo, sudo apt install ffmpeg para distribuições baseadas no Debian/Ubuntu.
+<img src="https://img.shields.io/github/stars/titenq/videodl.svg" style="margin-right: 20px;">
+<img src="https://img.shields.io/github/forks/titenq/videodl.svg" style="margin-right: 20px;">
+<img src="https://img.shields.io/github/issues/titenq/videodl.svg">
 
-Python >= 3.7:
+### Executa o download de vídeos:
+- YouTube - Vídeo
+- YouTube - Shorts
+- YouTube - Playlist
+- Instagram
+- Facebook
 
-https://www.python.org/downloads
+## Pré-requisitos
 
-Instalação: A instalação do Python também depende do sistema operacional:
-Windows: Baixar o instalador do Python aqui e garantir que a opção "Add Python to PATH" esteja selecionada durante a instalação.
-macOS: Usar Homebrew com o comando brew install python.
-Linux: Usar o gerenciador de pacotes da sua distribuição, como sudo apt install python3 para distribuições baseadas no Debian/Ubuntu.
+### NodeJS >= 22
 
-Documentação para os Usuários
-Para facilitar para outras pessoas que irão usar seu projeto, você pode incluir um arquivo README.md ou um guia de instalação que explique claramente como instalar o FFmpeg e o Python, junto com os comandos específicos para cada sistema operacional.
+### Python >= 3.7
+
+### FFmpeg
+
+#### Instalar FFmpeg
+
+#### Linux (Debian Based):
+```bash
+sudo apt install ffmpeg
+```
+
+#### macOS:
+```bash
+brew install ffmpeg
+```
+
+#### Windows:
+Siga este wikihow: [https://www.wikihow.com/Install-FFmpeg-on-Windows](https://www.wikihow.com/Install-FFmpeg-on-Windows)
+
+## Instalação
+
+**Clone o Repositório:**
+```bash
+git clone git@github.com:titenq/videodl.git
+```
+
+**Navegue até o diretório do projeto:**
+```bash
+cd videodl
+```
+
+**Instale as Dependências:**
+```bash
+npm install
+```
+
+**Execute o build:**
+```bash
+npm run build
+```
+
+**Crie o link do CLI:**
+```bash
+npm link
+```
+
+## Como usar
+```bash
+videodl https://www.youtube.com/watch?v=Ptbk2af68e8
+```
+Substitua `https://www.youtube.com/watch?v=Ptbk2af68e8` pela URL do vídeo ou playlist que você deseja baixar.
+
+Os vídeos serão salvos em: `pasta-do-usuário/videodl`.
+
+## Licença
+Distribuído sob a licença GPL-3.0. Consulte `LICENSE.txt` para obter mais informações.

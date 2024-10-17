@@ -1,8 +1,10 @@
 import { existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
-
 import progressEstimator from 'progress-estimator';
 import youtubedl from 'youtube-dl-exec';
+
+const args = process.argv.slice(2);
+const url = args[0];
 
 const logger = progressEstimator();
 
@@ -10,7 +12,7 @@ const downloader = async (url: string) => {
   let downloadError = 'Erro ao baixar o vídeo:';
 
   try {
-    const outputDir = join(process.cwd(), 'videos');
+    const outputDir = join(process.cwd(), 'videodl');
 
     if (!existsSync(outputDir)) {
       mkdirSync(outputDir);
@@ -21,9 +23,9 @@ const downloader = async (url: string) => {
       flatPlaylist: true,
       dumpSingleJson: true
     });
-    
+
     const metadata = await logger(metadataPromise, `Obtendo metadata de ${url}\n`);
-    
+
     if (typeof metadata !== 'string') {
       let options = {
         format: 'bestvideo+bestaudio',
@@ -47,19 +49,25 @@ const downloader = async (url: string) => {
       }
 
       const promise = youtubedl(url, options);
-  
+
       await logger(promise, downloadingMessage);
-      
+
       console.log(downloadSuccess);
 
       return;
     }
 
     console.log(`Erro ao obter metadata ${url}`);
-    
+
   } catch (error) {
     console.log(downloadError, error);
   }
 };
 
-downloader('https://www.youtube.com/watch?v=XelFRD8LhsM');
+if (!url) {
+  console.error('Por favor, forneça uma URL de vídeo ou playlist.');
+
+  process.exit(1);
+}
+
+downloader(url);

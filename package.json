@@ -1,8 +1,12 @@
 {
-  "name": "yt-download",
+  "name": "videodl",
   "version": "1.0.0",
-  "main": "index.js",
+  "bin": {
+    "videodl": "./bin/videodl"
+  },
+  "main": "./src/index.ts",
   "scripts": {
+    "build": "tsc",
     "dev": "node --import=tsx --watch src/index.ts",
     "start": "node --import=tsx src/index.ts"
   },
@@ -15,7 +19,8 @@
   },
   "devDependencies": {
     "@types/node": "^22.7.5",
-    "tsx": "^4.19.1"
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3"
   },
   "dependencies": {
     "progress-estimator": "^0.3.1",

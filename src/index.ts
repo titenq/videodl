@@ -1,18 +1,18 @@
 import { existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { homedir } from 'node:os';
+
 import progressEstimator from 'progress-estimator';
 import youtubedl from 'youtube-dl-exec';
-
-const args = process.argv.slice(2);
-const url = args[0];
+import inquirer from 'inquirer';
 
 const logger = progressEstimator();
 
-const downloader = async (url: string) => {
+const downloader = async (url: string, downloadType: string) => {
   let downloadError = 'Erro ao baixar o vídeo:';
 
   try {
-    const outputDir = join(process.cwd(), 'videodl');
+    const outputDir = join(homedir(), 'videodl');
 
     if (!existsSync(outputDir)) {
       mkdirSync(outputDir);
@@ -28,14 +28,14 @@ const downloader = async (url: string) => {
 
     if (typeof metadata !== 'string') {
       let options = {
-        format: 'bestvideo+bestaudio',
+        format: downloadType === 'audio' ? 'bestaudio' : 'bestvideo+bestaudio',
         mergeOutputFormat: 'mp4',
-        output: join(outputDir, '%(title)s.%(ext)s'),
-        postprocessorArgs: '-movflags faststart'
+        output: join(outputDir, downloadType === 'audio' ? '%(title)s.mp3' : '%(title)s.%(ext)s'),
+        postprocessorArgs: downloadType === 'audio' ? '-acodec libmp3lame' : '-movflags faststart'
       };
 
-      let downloadingMessage = `Baixando o vídeo de ${url}\n`;
-      let downloadSuccess = 'Vídeo baixado com sucesso!';
+      let downloadingMessage = `Baixando o ${downloadType === 'audio' ? 'áudio' : 'vídeo'} de ${url}\n`;
+      let downloadSuccess = `${downloadType === 'audio' ? 'Áudio' : 'Vídeo'} baixado com sucesso!`;
 
       if (metadata._type === 'playlist') {
         options = {
@@ -64,10 +64,35 @@ const downloader = async (url: string) => {
   }
 };
 
-if (!url) {
-  console.error('Por favor, forneça uma URL de vídeo ou playlist.');
+const askForUrl = async () => {
+  const answers = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'url',
+      message: 'Por favor, forneça a URL do vídeo ou playlist:'
+    }
+  ]);
 
-  process.exit(1);
-}
+  return answers.url;
+};
 
-downloader(url);
+const askDownloadType = async () => {
+  const answers = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'downloadType',
+      message: 'Você quer baixar o vídeo ou só o áudio?',
+      choices: ['Vídeo', 'Áudio'],
+    },
+  ]);
+
+  return answers.downloadType.toLowerCase() === 'áudio' ? 'audio' : 'video';
+};
+
+const main = async () => {
+  const downloadType = await askDownloadType();
+  const url = await askForUrl();
+  await downloader(url, downloadType);
+};
+
+main();

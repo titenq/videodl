@@ -4,7 +4,7 @@
 ![](https://img.shields.io/github/forks/titenq/quizmania.svg)&nbsp;&nbsp;
 ![](https://img.shields.io/github/issues/titenq/quizmania.svg) 
 
-### Executa o download de vídeos:
+### Executa o download de vídeos e agora com a opção de baixar somente o áudio:
 - YouTube - Vídeo
 - YouTube - Shorts
 - YouTube - Playlist
@@ -13,7 +13,7 @@
 
 ## Pré-requisitos
 
-### NodeJS >= 22
+### NodeJS >= 20.18.0
 
 ### Python >= 3.7
 
@@ -62,12 +62,24 @@ npm link
 ```
 
 ## Como usar
+### Execute no terminal:
 ```bash
-videodl https://www.youtube.com/watch?v=Ptbk2af68e8
+videodl
 ```
-Substitua `https://www.youtube.com/watch?v=Ptbk2af68e8` pela URL do vídeo ou playlist que você deseja baixar.
 
-Os vídeos serão salvos em: `pasta-do-usuário/videodl`.
+### Escolha entre vídeo ou áudio:
+```bash
+? Você quer baixar o vídeo ou só o áudio? (Use arrow keys)
+❯ Vídeo
+  Áudio
+```
+
+### Forneça a URL:
+```bash
+? Por favor, forneça a URL do vídeo ou playlist:
+```
+
+### Os arquivos serão salvos em: `pasta-do-usuário/videodl`.
 
 ## Licença
 Distribuído sob a licença GPL-3.0. Consulte `LICENSE.txt` para obter mais informações.

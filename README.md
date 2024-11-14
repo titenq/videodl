@@ -1,8 +1,8 @@
 # videodl
 
-![](https://img.shields.io/github/stars/titenq/quizmania.svg)&nbsp;&nbsp;
-![](https://img.shields.io/github/forks/titenq/quizmania.svg)&nbsp;&nbsp;
-![](https://img.shields.io/github/issues/titenq/quizmania.svg) 
+![](https://img.shields.io/github/stars/titenq/videodl.svg)&nbsp;&nbsp;
+![](https://img.shields.io/github/forks/titenq/videodl.svg)&nbsp;&nbsp;
+![](https://img.shields.io/github/issues/titenq/videodl.svg) 
 
 ### Executa o download de vídeos e agora com a opção de baixar somente o áudio:
 - YouTube - Vídeo
